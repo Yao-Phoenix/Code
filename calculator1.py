@@ -34,6 +34,7 @@ def result(salary):
 if __name__ == '__main__':
     input_ = dict()
     output_ = dict()
+    Result = []
     for argv in sys.argv[1:]:
         id, salary = argv.split(':')
         try:
@@ -41,13 +42,10 @@ if __name__ == '__main__':
         except:
             print("Parameter Error")
             exit()
-    Salary = input_.values()
-    ID = input_.keys()
+    Salary = list(input_.values())
+    ID = list(input_.keys())
    # print(Salary)
     for i in Salary:
-        Result = result(i)
-        for j in ID:
-            output_.setdefault(j, Result)
-            continue
-    for key, value in output_.items():
+        Result.append(result(i))
+    for key, value in zip(ID, Result):
         print("{}:{:.2f}".format(key,value))
